@@ -11,4 +11,9 @@ package mx.uady.controller;
  */
 public class Controller {
     
+    //Función que generará la cabecera de la tabla
+    public String [] getHeader(){
+        String[] header = {"Nombre", "Monto", "Cuenta"};
+        return header;
+    }
 }
