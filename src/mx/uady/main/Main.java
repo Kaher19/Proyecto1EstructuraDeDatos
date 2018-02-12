@@ -5,6 +5,8 @@
  */
 package mx.uady.main;
 
+import mx.uady.view.View;
+
 /**
  *
  * @author A13001777
@@ -16,6 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new View().setVisible(true);
     }
     
 }
