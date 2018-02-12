@@ -13,7 +13,15 @@ import mx.uady.controller.Controller;
  *
  * @author A13001777
  */
+
+        
 public class View extends javax.swing.JFrame {
+    
+/**Variables globales**/
+public String clientName = "";
+public String clientAccount = "";
+public String clientAmmount = "";
+
 DefaultTableModel mainTableModel = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -77,6 +85,11 @@ Controller control = new Controller();
         jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -92,14 +105,12 @@ Controller control = new Controller();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addEmployWindowLayout.createSequentialGroup()
                 .addGroup(addEmployWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addEmployWindowLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
                         .addGroup(addEmployWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addEmployWindowLayout.createSequentialGroup()
-                                .addGap(58, 58, 58)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(2, 2, 2))
-                            .addGroup(addEmployWindowLayout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(52, 52, 52))
                     .addGroup(addEmployWindowLayout.createSequentialGroup()
                         .addContainerGap()
@@ -210,12 +221,18 @@ Controller control = new Controller();
         // TODO add your handling code here:
         addEmployWindow.setVisible(true);
         addEmployWindow.setLocationRelativeTo(null);
+        addEmployWindow.setTitle("Agregar Empleado");
     }//GEN-LAST:event_generateEmployButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         addEmployWindow.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.addClient(jTextField1, jTextField2, jTextField3);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,7 +269,7 @@ Controller control = new Controller();
         });
     }
     
-    //Método que inicializa la tabla con la cabecera por defecto
+    /**Método que inicializa la tabla con la cabecera por defecto**/
     private void beginTable(javax.swing.table.DefaultTableModel model){
         String elementos[] = control.getHeader();
         for (String elemento : elementos) {
@@ -274,6 +291,30 @@ Controller control = new Controller();
     public String getTextFieldText(javax.swing.JTextField textField){
         String texto = textField.getText();
         return texto;
+    }
+    
+    /**Metodo que obtiene el texto de una caja de texto, dicha caja de texto es el argumento
+     * @param nameTF
+     * @param ammountTF
+     * @param accountTF
+     * @return texto*/
+    private void addClient(
+            javax.swing.JTextField nameTF,
+            javax.swing.JTextField ammountTF,
+            javax.swing.JTextField accountTF){
+        control.addNewClient(nameTF.getText(), accountTF.getText(), Double.parseDouble(ammountTF.getText()));
+    }
+    
+    public String getClientName(){
+        return clientName;
+    }
+    
+    public String getClientAccount(){
+        return clientName;
+    }
+    
+    public String getClientAmmount(){
+        return clientName;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

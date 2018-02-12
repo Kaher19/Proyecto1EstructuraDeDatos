@@ -1,26 +1,24 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mx.uady.model;
 
-
+/**
+ *
+ * @author Kirbey
+ */
 public class Clientes {
-    
     private String nombreTitular;
     private String cuentaTitular;
-    private int PIN;
-    private String cuentaOrigen;
-    private String titularOrigen;
     private double monto;
-    private double fecha;
 
     //Constructor
-    public Clientes(String nombreTitular, String numeroCuentaTitular, int numeroSeguridad, String numeroCuentaOrigen, String nombreTitularOrigen, double monto, double fechaTransferencia) {
+    public Clientes(String nombreTitular, String cuentaTitular, double monto) {
         this.nombreTitular = nombreTitular;
-        this.cuentaTitular = numeroCuentaTitular;
-        this.PIN = numeroSeguridad;
-        this.cuentaOrigen = numeroCuentaOrigen;
-        this.titularOrigen = nombreTitularOrigen;
+        this.cuentaTitular = cuentaTitular;
         this.monto = monto;
-        this.fecha = fechaTransferencia;
     }
 
     public String getNombreTitular() {
@@ -39,30 +37,6 @@ public class Clientes {
         this.cuentaTitular = cuentaTitular;
     }
 
-    public int getPIN() {
-        return PIN;
-    }
-
-    public void setPIN(int PIN) {
-        this.PIN = PIN;
-    }
-
-    public String getCuentaOrigen() {
-        return cuentaOrigen;
-    }
-
-    public void setCuentaOrigen(String cuentaOrigen) {
-        this.cuentaOrigen = cuentaOrigen;
-    }
-
-    public String getTitularOrigen() {
-        return titularOrigen;
-    }
-
-    public void setTitularOrigen(String titularOrigen) {
-        this.titularOrigen = titularOrigen;
-    }
-
     public double getMonto() {
         return monto;
     }
@@ -70,16 +44,4 @@ public class Clientes {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-
-    public double getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(double fecha) {
-        this.fecha = fecha;
-    }
-    
-    
-    
-    
 }
