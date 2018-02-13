@@ -5,11 +5,12 @@
 build/
 
 # Private folder
-nbproject/private
+nbproject/private/
 
 # Archivos generados por el programa
 *.csv
 *.txt
+*.xml
 
 # Log file
 *.log
