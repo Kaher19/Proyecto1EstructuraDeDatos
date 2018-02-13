@@ -5,6 +5,9 @@
  */
 package mx.uady.view;
 
+import java.awt.Color;
+import java.util.Arrays;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import mx.uady.controller.Controller;
 
@@ -18,9 +21,10 @@ import mx.uady.controller.Controller;
 public class View extends javax.swing.JFrame {
     
 /**Variables globales**/
-public String clientName = "";
-public String clientAccount = "";
-public String clientAmmount = "";
+public String employedName = "";
+public String employedAccount = "";
+public String employedAmmount = "";
+public String[][]empleados = new String[1][3];
 
 DefaultTableModel mainTableModel = new DefaultTableModel(){
             @Override
@@ -215,6 +219,10 @@ Controller control = new Controller();
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
         // TODO add your handling code here:
+        String nombre = mainTableModel.getValueAt(0, 0).toString();
+        int monto = Integer.parseInt(mainTableModel.getValueAt(0, 1).toString());
+        String cuentaDestino = mainTableModel.getValueAt(0, 2).toString();
+        control.generateReport(nombre, monto, cuentaDestino);
     }//GEN-LAST:event_generateReportButtonActionPerformed
 
     private void generateEmployButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateEmployButtonActionPerformed
@@ -231,7 +239,11 @@ Controller control = new Controller();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.addClient(jTextField1, jTextField2, jTextField3);
+        String[]nuevoEmpleado = this.nuevoEmpleado(jTextField1, jTextField2, jTextField3);
+        empleados =new String[1][nuevoEmpleado.length];
+        control.addElementToTable(empleados, nuevoEmpleado);
+        this.cargarTabla(empleados, mainTableModel, mainTable);
+        addEmployWindow.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -277,14 +289,6 @@ Controller control = new Controller();
         }
     }
     
-    /**Método que recibe un String[]. Inicializa la tabla con una cabecera personalizada**/
-    private void beginTable(javax.swing.table.DefaultTableModel model, String[] header){
-        String elementos[] = header;
-        for (String elemento : elementos) {
-            model.addColumn(elemento);
-        }
-    }
-    
     /**Metodo que obtiene el texto de una caja de texto, dicha caja de texto es el argumento
      * @param textField
      * @return texto*/
@@ -302,19 +306,46 @@ Controller control = new Controller();
             javax.swing.JTextField nameTF,
             javax.swing.JTextField ammountTF,
             javax.swing.JTextField accountTF){
-        control.addNewClient(nameTF.getText(), accountTF.getText(), Double.parseDouble(ammountTF.getText()));
+        control.generateReport(nameTF.getText(), Integer.parseInt(ammountTF.getText()), accountTF.getText());
     }
     
-    public String getClientName(){
-        return clientName;
+    private void cargarTabla(String[][] datos, javax.swing.table.DefaultTableModel model, javax.swing.JTable table){
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setGridColor(Color.BLACK);
+        table.setShowHorizontalLines(false);
+        table.doLayout();
+        
+        //Función que rellena los datos de la tabla con los datos obtenidos
+        String[] line = new String[datos[0].length];
+        for (String[] dato : datos) {
+            for (int column = 0; column<line.length; column++) {
+                line[column] = "" + dato[column];
+            }
+            model.addRow(line);
+        }
     }
     
-    public String getClientAccount(){
-        return clientName;
+    /**Metodo que deja vacía la tabla exceptuando el header, el cual se mantiene**/
+    private void limpiarTabla(javax.swing.table.DefaultTableModel model, javax.swing.JTable table){
+        int tableTotalRow = table.getRowCount();
+        if (tableTotalRow != 0){ 
+            //Una vez obtenido el table limpiamos la tabla
+            for(int i = tableTotalRow-1; i >= 0; i--){
+                model.removeRow(i);
+            }
+        }
     }
     
-    public String getClientAmmount(){
-        return clientName;
+    private String[] nuevoEmpleado(
+            javax.swing.JTextField nameTF,
+            javax.swing.JTextField ammountTF,
+            javax.swing.JTextField accountTF){
+        String[] cliente = {nameTF.getText(), ammountTF.getText(), accountTF.getText()};
+        nameTF.setText("");
+        ammountTF.setText("");
+        accountTF.setText("");
+        //mainTableModel.addRow(cliente);
+        return cliente;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

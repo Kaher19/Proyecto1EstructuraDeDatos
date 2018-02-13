@@ -10,35 +10,57 @@ package mx.uady.model;
  * @author Kirbey
  */
 public class Clientes {
-    private String nombreTitular;
-    private String cuentaTitular;
+    private String nombre;
     private double monto;
+    private String cuentaDestino;
+    private double fecha;
+    private String cuentaOrigen;
+    private float impuesto;
 
     //Constructor
-    public Clientes(String nombreTitular, String cuentaTitular, double monto) {
-        this.nombreTitular = nombreTitular;
-        this.cuentaTitular = cuentaTitular;
+    public Clientes(String nombre, double monto, String cuentaDestino, double fecha, String cuentaOrigen, float impuesto) {
+        this.nombre = nombre;
         this.monto = monto;
+        this.cuentaDestino = cuentaDestino;
+        this.fecha = fecha;
+        this.cuentaOrigen = cuentaOrigen;
+        this.impuesto = impuesto;
     }
 
-    public String getNombreTitular() {
-        return nombreTitular;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreTitular(String nombreTitular) {
-        this.nombreTitular = nombreTitular;
+    public void setNombre(String nombreTitular) {
+        this.nombre = nombreTitular;
     }
 
-    public String getCuentaTitular() {
-        return cuentaTitular;
+    public String getCuentaOrigen() {
+        return cuentaOrigen;
     }
 
-    public void setCuentaTitular(String cuentaTitular) {
-        this.cuentaTitular = cuentaTitular;
+    public void setCuentaOrigen(String cuentaDestino) {
+        this.cuentaDestino = cuentaDestino;
     }
 
     public double getMonto() {
         return monto;
+    }
+    
+    public float getImpuesto(){
+        return impuesto;
+    }
+    
+    public String getCuentaDestino(){
+        return cuentaDestino;
+    }
+    
+    public double getFecha(){
+        return fecha;
+    }
+    
+    public void setFecha(double fecha){
+        this.fecha = fecha;
     }
 
     public void setMonto(double monto) {

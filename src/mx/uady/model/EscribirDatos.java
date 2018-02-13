@@ -17,20 +17,36 @@ import java.util.Iterator;
  * @author Kirbey
  */
 public class EscribirDatos {
-    /**Metodo
+    /**Variables globales**/
+    private String ficheroSalida = "C:\\Users\\Kirbey\\Desktop\\Registro de Transferencias.csv";
+    private String outputFile = ficheroSalida;
+    
+    /*Metodos*/
+    
+    /**Metodo que comprueba si el documento .csv ya existe
+     *@return exist
+     */
+    public boolean existDocument(){
+        boolean exist = new File(outputFile).exists();
+        return exist;
+    }
+    
+    /**Metodo que crea el documento .csv
      * @param nombre*
      * @param cuenta
      * @param monto*/
-    public void CrearDocCSV(String nombre, String cuenta, double monto){
+    public void crearDocCSV(String nombre, double monto, String cuentaDestino, double fecha, float impuesto){
         ArrayList<Clientes> listaClientes = new ArrayList<>();
-        String ficherosalida = "C:\\Users\\Kirbey\\Desktop\\Registro de Transferencias.csv";
+        listaClientes.add(new Clientes (nombre, monto, cuentaDestino, fecha, "cuentaOrigen", impuesto));
+        System.out.println("Nombre:" +nombre);
+        System.out.println("Monto:" +monto);
+        System.out.println("CuentaDestino:" +cuentaDestino);
+        System.out.println("Fecha:" +fecha);
+        System.out.println("CuentaOrigen: cuentaOrigen");
+        System.out.println("Impuesto:" +impuesto);
         
-        listaClientes.add(new Clientes (nombre, cuenta, monto));
         
-        String outputFile = ficherosalida;
-        boolean Existe = new File(outputFile).exists();
-         
-        if(Existe){
+        if(this.existDocument()){
             File ArchivoEmpleados = new File(outputFile);
             ArchivoEmpleados.delete();
         }        
@@ -39,16 +55,22 @@ public class EscribirDatos {
  
             CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
              
-            csvOutput.write("Nombre de titular");
-            csvOutput.write("Numero de cuenta del titular");
-            csvOutput.write("Monto");
+            csvOutput.write("Nombre");
+            csvOutput.write("Monto de transferencia");
+            csvOutput.write("Cuenta de destino");
+            csvOutput.write("Fecha de transferencia");
+            csvOutput.write("Cuenta de origen");
+            csvOutput.write("Impuesto");
             csvOutput.endRecord();
             
             for (Iterator<Clientes> it = listaClientes.iterator(); it.hasNext();) {
                 Clientes transf = it.next();
-                csvOutput.write(transf.getNombreTitular());
-                csvOutput.write(transf.getCuentaTitular());
-                csvOutput.write("" + transf.getMonto());
+                csvOutput.write(transf.getNombre());
+                csvOutput.write("" +transf.getMonto());
+                csvOutput.write(transf.getCuentaDestino());
+                csvOutput.write("" +transf.getFecha());
+                csvOutput.write(transf.getCuentaOrigen());
+                csvOutput.write("" + transf.getImpuesto());
                 csvOutput.endRecord();
             }
             
