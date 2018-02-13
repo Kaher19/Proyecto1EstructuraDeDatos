@@ -1,8 +1,8 @@
 # Compiled class file
 *.class
 
-# Buld folder
-buld/
+# Build folder
+build/
 
 # Log file
 *.log
