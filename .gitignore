@@ -5,7 +5,7 @@
 build/
 
 # Private folder
-nbproject/private/
+nbproject/private/private.xml
 
 # Archivos generados por el programa
 *.csv
