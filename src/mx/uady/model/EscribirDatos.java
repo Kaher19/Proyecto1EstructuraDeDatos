@@ -18,7 +18,7 @@ import java.util.Iterator;
  */
 public class EscribirDatos {
     /**Variables globales**/
-    private String ficheroSalida = "C:\\Users\\Kirbey\\Desktop\\Registro de Transferencias.csv";
+    private String ficheroSalida = "Nómina.csv";
     private String outputFile = ficheroSalida;
     
     /*Metodos*/
@@ -32,19 +32,17 @@ public class EscribirDatos {
     }
     
     /**Metodo que crea el documento .csv
-     * @param nombre*
-     * @param cuenta
+     * @param nombre
+     * @param cuentaDestino
+     * @param fecha
+     * @param impuesto
+     * @param elementosTabla
      * @param monto*/
-    public void crearDocCSV(String nombre, double monto, String cuentaDestino, double fecha, float impuesto){
+    public void crearDocCSV(String nombre, double monto, String cuentaDestino, double fecha, float impuesto, int elementosTabla){
         ArrayList<Clientes> listaClientes = new ArrayList<>();
-        listaClientes.add(new Clientes (nombre, monto, cuentaDestino, fecha, "cuentaOrigen", impuesto));
-        System.out.println("Nombre:" +nombre);
-        System.out.println("Monto:" +monto);
-        System.out.println("CuentaDestino:" +cuentaDestino);
-        System.out.println("Fecha:" +fecha);
-        System.out.println("CuentaOrigen: cuentaOrigen");
-        System.out.println("Impuesto:" +impuesto);
-        
+        for (int i = 0; i < elementosTabla; i++) {
+            listaClientes.add(new Clientes (nombre, monto, cuentaDestino, fecha, "cuentaOrigen", impuesto));
+        }
         
         if(this.existDocument()){
             File ArchivoEmpleados = new File(outputFile);

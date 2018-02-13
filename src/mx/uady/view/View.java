@@ -219,10 +219,7 @@ Controller control = new Controller();
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
         // TODO add your handling code here:
-        String nombre = mainTableModel.getValueAt(0, 0).toString();
-        int monto = Integer.parseInt(mainTableModel.getValueAt(0, 1).toString());
-        String cuentaDestino = mainTableModel.getValueAt(0, 2).toString();
-        control.generateReport(nombre, monto, cuentaDestino);
+        this.generarDocumentoCSV();
     }//GEN-LAST:event_generateReportButtonActionPerformed
 
     private void generateEmployButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateEmployButtonActionPerformed
@@ -297,18 +294,6 @@ Controller control = new Controller();
         return texto;
     }
     
-    /**Metodo que obtiene el texto de una caja de texto, dicha caja de texto es el argumento
-     * @param nameTF
-     * @param ammountTF
-     * @param accountTF
-     * @return texto*/
-    private void addClient(
-            javax.swing.JTextField nameTF,
-            javax.swing.JTextField ammountTF,
-            javax.swing.JTextField accountTF){
-        control.generateReport(nameTF.getText(), Integer.parseInt(ammountTF.getText()), accountTF.getText());
-    }
-    
     private void cargarTabla(String[][] datos, javax.swing.table.DefaultTableModel model, javax.swing.JTable table){
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setGridColor(Color.BLACK);
@@ -346,6 +331,22 @@ Controller control = new Controller();
         accountTF.setText("");
         //mainTableModel.addRow(cliente);
         return cliente;
+    }
+    
+    public void generarDocumentoCSV(){
+        String nombre = "";
+        int monto = 0;
+        String cuentaDestino = "";
+        int numFilas = mainTableModel.getRowCount();
+        int numColumns = mainTableModel.getColumnCount();
+        for (int row = 0; row < numFilas; row++) {
+            for (int column = 0; column < numColumns; column++) {
+                nombre = mainTableModel.getValueAt(row, column).toString();
+                monto = Integer.parseInt(mainTableModel.getValueAt(row, column).toString());
+                cuentaDestino = mainTableModel.getValueAt(row, column).toString();
+            }
+                control.generateReport(nombre, monto, cuentaDestino, numFilas);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

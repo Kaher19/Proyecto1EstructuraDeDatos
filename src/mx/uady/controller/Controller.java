@@ -15,9 +15,9 @@ public class Controller {
     private EscribirDatos escribirDatos = new EscribirDatos();
     private double fecha = System.currentTimeMillis();
     //Funcion que 
-    public void generateReport(String nombre, int monto, String cuenta){
+    public void generateReport(String nombre, int monto, String cuenta, int elementosTabla){
         float impuesto = (float) (monto*0.16);
-        escribirDatos.crearDocCSV(nombre, monto, cuenta, fecha, impuesto);
+        escribirDatos.crearDocCSV(nombre, monto, cuenta, fecha, impuesto, elementosTabla);
     }
     
     public String[][] addElementToTable(String[][]table, String[] newElementToAdd){
