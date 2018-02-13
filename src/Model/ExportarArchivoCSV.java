@@ -19,8 +19,14 @@ import javax.swing.JOptionPane;
  *
  * @author Daniel Alvarez
  */
+
+/**Clase que se encarga de la gestion de archivos .csv
+**/
 public class ExportarArchivoCSV {
     
+    /**Funcion generarArchivo genera el documento .csv 
+     * @param nomina
+     **/
     public void generarArchivo(List<DatosEmpleado> nomina){
         String ficheroSalida = "Nomina.csv";
         String outputFile = ficheroSalida;

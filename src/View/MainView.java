@@ -19,7 +19,7 @@ public class MainView extends javax.swing.JFrame {
     
 
     /**
-     * Creates new form RegistroEmpleadosView
+     * Creates new form MainView
      */
     public MainView() {
         initComponents();
@@ -134,22 +134,37 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
    
     //Listeners de los botones
-    public JButton listenJBNewEployed() {
+    /**Detecta si el boton "JBNewEployed" ha sido presionado
+     * @return JBNewEmploed
+     **/
+    public JButton listenJBNewEmployed() {
         return JBNewEmployed;
     }
     
+    /**Detecta si el boton "JBGenerateReport" ha sido presionado
+     * @return JBGenerateReport
+     **/
     public JButton listenJBGenerateReport() {
         return JBGenerateReport;
     }
-
+    
+    /**Solicita acceso al combo box "JCBMSorter"
+     * @return JBNewEmploed
+     **/
     public JComboBox<String> listenJCBMSorter() {
         return JCBSort;
     }
     
+    /**Solicita acceso a la etiqueta "JLResults"
+     * @return JL results
+     **/
     public JLabel listenJLResults() {
         return JLResults;
     }
     
+    /**Solicita acceso a la tabla "JTEmployees"
+     * @return JTEmployees
+     **/
     public JTable listenJTEmployees() {
         return JTEmployees;
     }

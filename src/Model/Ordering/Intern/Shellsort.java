@@ -40,6 +40,9 @@ public class Shellsort {
         return entrada;
     }
     
+    /**Ordena a los empleados con el método shellsort
+     * @param nomina
+     **/
     public ArrayList<DatosEmpleado> ordenarEmpleados(ArrayList<DatosEmpleado> nomina){
         ArrayList<DatosEmpleado> nominaArreglada = new ArrayList<DatosEmpleado>();
         

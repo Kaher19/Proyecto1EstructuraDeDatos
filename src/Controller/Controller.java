@@ -80,6 +80,7 @@ public final class Controller implements ActionListener{
         
     }
     
+    /**Inicializa los datos para las dos vistas**/
     public void iniciar(){
         mainWindow.setTitle("Generador de nóminas");
         addEmpWindow.setTitle("Agregar nuevo empleado");
@@ -87,7 +88,8 @@ public final class Controller implements ActionListener{
         addEmpWindow.setLocationRelativeTo(null);
     }
     
-    //Metodo para inicializar y actualizar el contenido de la tabla principal
+    /**Metodo para configurar el contenido de la tabla principal
+     * @param tabla Tabla que será configurada**/
     public void configuraTabla(JTable tabla){
         Vector<String> titulos = new Vector<String>();
         Vector<Vector<Object>> datos = new Vector<Vector<Object>>();
@@ -113,12 +115,14 @@ public final class Controller implements ActionListener{
         
     }
     
+    /**Override de la funcion actionPerformed
+     * @param e evento**/
     @Override
     public void actionPerformed(ActionEvent e){
         String s = (String) mainWindow.JCBSort.getSelectedItem();
         
         //Botones para la vista "MainView"
-        if(mainWindow.listenJBNewEployed() == e.getSource()){ //Listener del boton "+Agregar empleado"       
+        if(mainWindow.listenJBNewEmployed() == e.getSource()){ //Listener del boton "+Agregar empleado"       
             addEmpWindow.setVisible(true);
             addEmpWindow.setLocationRelativeTo(mainWindow);
         }
@@ -193,16 +197,16 @@ public final class Controller implements ActionListener{
                     long tiempoInicial5 = System.currentTimeMillis();
 
                     ExportarArchivoCSV exportar5 = new ExportarArchivoCSV();
-                    ArrayList<DatosEmpleado> shellsorteado = new ArrayList<DatosEmpleado>();
+                    ArrayList<DatosEmpleado> shellsorter = new ArrayList<DatosEmpleado>();
 
-                    shellsorteado = shellsort.ordenarEmpleados(regEmpleados.listaEmpleados);
+                    shellsorter = shellsort.ordenarEmpleados(regEmpleados.listaEmpleados);
                     exportar5.generarArchivo(regEmpleados.listaEmpleados);
 
                     long tiempoFinal5 = System.currentTimeMillis();                
                     long tiempoTotal5 = tiempoFinal5 - tiempoInicial5;
                     mainWindow.JLResults.setText("La operación tardó: " + tiempoTotal5 / 1000 + " segundos");
 
-                    exportar5.generarArchivo(shellsorteado);
+                    exportar5.generarArchivo(shellsorter);
                     break;
 
                 case "Mezcla directa":
